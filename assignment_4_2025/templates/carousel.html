@@ -1,0 +1,35 @@
+<div id="{{ carousel_id }}" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel inner items -->
+    <div class="carousel-inner">
+        {% for item in carousel_data %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <div class="d-flex justify-content-center">
+                    <div class="card text-center" style="width: 18rem;">
+                        {% if business.photo %}
+                            <img src="{{ item.photo }}" class="card-img-top" alt="{{ item.name }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <div class="card-img-top bg-light d-flex justify-content-center align-items-center" style="height: 200px;">
+                                <p class="text-muted">No photo</p>
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ business.name }}</h5>
+                            <p class="card-text">{{ business.address }}</p>
+                            <a href="{{ item.url }}" class="btn btn-primary">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Carousel controls (no indicators/dots) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
